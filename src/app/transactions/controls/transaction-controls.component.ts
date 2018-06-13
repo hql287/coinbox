@@ -8,7 +8,7 @@ import { Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 export class TransactionControlsComponent implements OnInit {
 
   @Output()
-  newTransactionAdded = new EventEmitter<boolean>();
+  newTransactionAdded = new EventEmitter();
 
   constructor() { }
 
