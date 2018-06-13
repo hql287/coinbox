@@ -7,15 +7,19 @@ import {AppComponent} from './app.component';
 
 // Content Components
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {TransactionsComponent} from './transactions/transactions.component';
 import {BudgetComponent} from './budget/budget.component';
 import {ReportComponent} from './report/report.component';
 import {AccountComponent} from './account/account.component';
 
 // Layout Components
 import {HeaderComponent} from './header/header.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+
+// Transaction
+import {TransactionsComponent} from './transactions/transactions.component';
+import {TransactionControlsComponent} from './transactions/controls/transaction-controls.component';
+import {TransactionFormComponent} from './transactions/form/transaction-form.component';
+import {TransactionListComponent} from './transactions/list/transaction-list.component';
 
 // Routes
 import {RouterModule, Routes} from '@angular/router';
@@ -34,12 +38,15 @@ const appRoutes: Routes = [
     AppComponent,
     DashboardComponent,
     BudgetComponent,
-    TransactionsComponent,
     PageNotFoundComponent,
     ReportComponent,
-    SidebarComponent,
     HeaderComponent,
     AccountComponent,
+    // Transactions
+    TransactionsComponent,
+    TransactionListComponent,
+    TransactionFormComponent,
+    TransactionControlsComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [],

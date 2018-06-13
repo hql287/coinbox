@@ -1,3 +1,8 @@
-<p>
-  transactions works!
-</p>
+<h1>Transactions</h1>
+<br>
+<transaction-controls (newTransactionAdded)="onNewTransactionAdded($event)">
+</transaction-controls>
+<br>
+<transaction-form></transaction-form>
+<br>
+<transaction-list [transactionsList]="transactions"></transaction-list>

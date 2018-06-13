@@ -1,0 +1,48 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Description</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Payee(ID)</th>
+      <th scope="col">Category(ID)</th>
+      <th scope="col">Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of transactionsList; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ item.note }}</td>
+      <td *ngIf="item.type == 'inflow'; else amount"
+        class="text-success">
+        € {{ item.amount }}
+      </td>
+      <td>{{ item.payeeID }}</td>
+      <td *ngIf="item.type == 'outflow'; else catID">
+        {{ item.catID }}
+      </td>
+      <td *ngIf="item.type == 'inflow'; else type"
+        class="text-success">
+        <span class="badge badge-success">+</span>
+        &nbsp;
+        Income
+      </td>
+      <!-- Alternative Template -->
+      <ng-template #amount>
+        <td class="text-danger">
+          € {{ item.amount }}
+        </td>
+      </ng-template>
+      <ng-template #catID>
+        <td>--</td>
+      </ng-template>
+      <ng-template #type>
+        <td class="text-danger">
+          <span class="badge badge-danger">-</span>
+          &nbsp;
+          Expense
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+// Fake Data
+import { transactionData } from '../../assets/transactions';
+
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionsComponent implements OnInit {
 
-  constructor() { }
+  formData;
+  formVisible: boolean;
+  transactions;
 
-  ngOnInit() {
+  constructor() {
+    this.transactions = transactionData;
   }
 
+  ngOnInit() { }
+
+  onNewTransactionAdded(data) {
+    this.transactions.push(data);
+  }
 }
