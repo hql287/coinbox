@@ -56,18 +56,13 @@ export class TransactionFormComponent implements OnInit {
     this.type        = new FormControl('', Validators.required);
   }
 
-  // TODO
-  validateForm() {
-    return true;
-  }
-
   closeForm() {
-    this.formData.reset();
     this.cancelled.emit(true);
+    this.formData.reset();
   }
 
   submitData() {
-    if (this.validateForm()) {
+    if (this.formData.valid) {
       this.submitted.emit(this.formData.value);
       this.formData.reset();
     }
