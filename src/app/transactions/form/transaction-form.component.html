@@ -1,46 +1,67 @@
-<form>
+<form [formGroup]="formData" novalidate>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    <div class="form-group col-md-3">
+      <label>Description</label>
+      <input
+        formControlName="description"
+        type="text"
+        class="form-control"
+        required>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    <div class="form-group col-md-1">
+      <label>Amount</label>
+      <input
+        formControlName="amount"
+        type="number"
+        class="form-control"
+        required>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
+    <div class="form-group col-md-3">
+      <label>Payee</label>
+      <select
+        formControlName="payeeID"
+        class="form-control"
+        required>
+        <option *ngFor="let payee of payees" [value]="payee.id">
+          {{ payee.title }}
+        </option>
+      </select>
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
+    <div class="form-group col-md-3">
+      <label>Category</label>
+      <select
+        formControlName="catID"
+        class="form-control"
+        required>
+        <option *ngFor="let cat of categories" [value]="cat.id">
+          {{ cat.label }}
+        </option>
       </select>
     </div>
     <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
+      <label>Type</label>
+      <select
+        formControlName="type"
+        class="form-control"
+        required>
+        <option value="inflow">Inflow</option>
+        <option value="outflow">Outflow</option>
+      </select>
     </div>
   </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
+  <div class="form-row justify-content-end">
+    <div class="col-md-2 text-right">
+      <button
+        (click)="submitData()"
+        type="button"
+        class="btn btn-success">
+      Save Transaction
+      </button>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-outline-danger">
+      Cancel
+      </button>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
 </form>

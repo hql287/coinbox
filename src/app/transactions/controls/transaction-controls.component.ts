@@ -1,28 +1,20 @@
-import { Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'transaction-controls',
   templateUrl: './transaction-controls.component.html',
-  styleUrls: ['./transaction-controls.component.css']
+  styleUrls: ['./transaction-controls.component.css'],
 })
 export class TransactionControlsComponent implements OnInit {
+  @Input() isFormVisible: boolean;
+  @Output() toggled = new EventEmitter<boolean>();
 
-  @Output()
-  newTransactionAdded = new EventEmitter();
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  toggleForm() {
+    this.toggled.emit(!this.isFormVisible);
+    this.isFormVisible = !this.isFormVisible;
   }
-
-  addTransaction() {
-    this.newTransactionAdded.emit({
-      payeeID: 5,
-      catID: 9,
-      amount: 23,
-      note: 'Fantastic Rubber Chicken',
-      type: 'outflow',
-    });
-  }
-
 }

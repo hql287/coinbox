@@ -14,13 +14,18 @@ export class TransactionsComponent implements OnInit {
   formVisible: boolean;
   transactions;
 
-  constructor() {
+  constructor() { }
+
+  ngOnInit() {
+    this.formVisible = true;
     this.transactions = transactionData;
   }
 
-  ngOnInit() { }
+  onToggleForm(isVisible: boolean) {
+    this.formVisible = isVisible;
+  }
 
-  onNewTransactionAdded(data) {
-    this.transactions.push(data);
+  onFormSubmitted(formData: any) {
+    this.transactions.push(formData);
   }
 }

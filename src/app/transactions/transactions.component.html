@@ -1,8 +1,21 @@
 <h1>Transactions</h1>
+
 <br>
-<transaction-controls (newTransactionAdded)="onNewTransactionAdded($event)">
+
+<transaction-controls
+  [isFormVisible]="formVisible"
+  (toggled)="onToggleForm($event)">
 </transaction-controls>
+
 <br>
-<transaction-form></transaction-form>
+
+<transaction-list [transactionsList]="transactions">
+</transaction-list>
+
 <br>
-<transaction-list [transactionsList]="transactions"></transaction-list>
+
+<transaction-form
+  *ngIf="formVisible"
+  (submitted)="onFormSubmitted($event)">
+</transaction-form>
+
