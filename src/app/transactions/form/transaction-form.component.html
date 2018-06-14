@@ -1,67 +1,143 @@
-<form [formGroup]="formData" novalidate>
-  <div class="form-row">
-    <div class="form-group col-md-3">
+<div class="form-container" [style.right]="isFormVisible ? '0' : '-100%'">
+  <h3>
+    <i class="material-icons">add_box</i>
+    Add a New Transaction
+  </h3>
+  <br>
+  <form [formGroup]="formData" novalidate>
+    <!-- Description -->
+    <div class="form-group">
       <label>Description</label>
       <input
         formControlName="description"
         type="text"
         class="form-control"
+        [ngClass]="{
+          'valid-input': description.valid && (description.touched || description.dirty),
+          'invalid-input': description.invalid && (description.touched || description.dirty)
+        }"
         required>
+      <div *ngIf="description.errors && (description.touched || description.dirty)">
+        <small class="text-danger" *ngIf="description.errors.required">
+          Description is required.
+        </small>
+      </div>
     </div>
-    <div class="form-group col-md-1">
+    <!-- Amount -->
+    <div class="form-group">
       <label>Amount</label>
-      <input
-        formControlName="amount"
-        type="number"
-        class="form-control"
-        required>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">€</span>
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          [ngClass]="{
+            'valid-input': amount.valid && (amount.touched || amount.dirty),
+            'invalid-input': amount.invalid && (amount.touched || amount.dirty)
+          }"
+          formControlName="amount"
+          required>
+      </div>
+      <div *ngIf="amount.errors && (amount.touched || amount.dirty)">
+        <small class="text-danger" *ngIf="amount.errors.required">
+          Amount is required.
+        </small>
+        <small class="text-danger" *ngIf="amount.errors.invalidAmount">
+          Amount cannot be zero or a nagative number.
+        </small>
+      </div>
     </div>
-    <div class="form-group col-md-3">
+    <!-- Payee -->
+    <div class="form-group">
       <label>Payee</label>
       <select
         formControlName="payeeID"
         class="form-control"
+        [ngClass]="{
+          'valid-input': payeeID.valid && (payeeID.touched || payeeID.dirty),
+          'invalid-input': payeeID.invalid && (payeeID.touched || payeeID.dirty)
+        }"
         required>
         <option *ngFor="let payee of payees" [value]="payee.id">
           {{ payee.title }}
         </option>
       </select>
+      <div *ngIf="payeeID.errors && (payeeID.touched || payeeID.dirty)">
+        <small class="text-danger" *ngIf="payeeID.errors.required">
+          Payee is required.
+        </small>
+      </div>
     </div>
-    <div class="form-group col-md-3">
+    <!-- Category -->
+    <div class="form-group">
       <label>Category</label>
       <select
         formControlName="catID"
         class="form-control"
+        [ngClass]="{
+          'valid-input': catID.valid && (catID.touched || catID.dirty),
+          'invalid-input': catID.invalid && (catID.touched || catID.dirty)
+        }"
         required>
         <option *ngFor="let cat of categories" [value]="cat.id">
           {{ cat.label }}
         </option>
       </select>
+      <div *ngIf="catID.errors && (catID.touched || catID.dirty)">
+        <small class="text-danger" *ngIf="catID.errors.required">
+          Payee is required.
+        </small>
+      </div>
     </div>
-    <div class="form-group col-md-2">
+    <!-- Type -->
+    <div class="form-group">
       <label>Type</label>
       <select
         formControlName="type"
         class="form-control"
+        [ngClass]="{
+          'valid-input': type.valid && (type.touched || type.dirty),
+          'invalid-input': type.invalid && (type.touched || type.dirty)
+        }"
         required>
         <option value="inflow">Inflow</option>
         <option value="outflow">Outflow</option>
       </select>
+      <div *ngIf="type.errors && (type.touched || type.dirty)">
+        <small class="text-danger" *ngIf="type.errors.required">
+          Payee is required.
+        </small>
+      </div>
     </div>
-  </div>
-  <div class="form-row justify-content-end">
-    <div class="col-md-2 text-right">
-      <button
-        (click)="submitData()"
-        type="button"
-        class="btn btn-success">
-      Save Transaction
-      </button>
+    <br>
+    <!-- Submit Buttons -->
+    <div class="form-row">
+      <div class="col-md-4">
+        <button
+          (click)="submitAndClose()"
+          type="button"
+          class="btn btn-block btn-success">
+          Save Transaction
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button
+          (click)="submitData()"
+          type="button"
+          class="btn btn-block btn-outline-success">
+          Save &amp; Add Another
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button
+          (click)="closeForm()"
+          type="button"
+          class="btn btn-block btn-outline-danger">
+          Cancel
+        </button>
+      </div>
     </div>
-    <div class="col-md-1">
-      <button type="button" class="btn btn-outline-danger">
-      Cancel
-      </button>
-    </div>
-  </div>
-</form>
+  </form>
+</div>

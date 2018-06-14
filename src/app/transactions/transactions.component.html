@@ -1,4 +1,6 @@
-<h1>Transactions</h1>
+<h1 class="d-flex align-items-center">
+  <i class="material-icons md-36">assignment</i> Transactions
+</h1>
 
 <br>
 
@@ -12,10 +14,9 @@
 <transaction-list [transactionsList]="transactions">
 </transaction-list>
 
-<br>
-
 <transaction-form
-  *ngIf="formVisible"
-  (submitted)="onFormSubmitted($event)">
+  [isFormVisible]="formVisible"
+  (submitted)="onFormSubmitted($event)"
+  (cancelled)="onCancelled($event)">
 </transaction-form>
 

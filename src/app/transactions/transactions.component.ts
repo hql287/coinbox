@@ -28,4 +28,8 @@ export class TransactionsComponent implements OnInit {
   onFormSubmitted(formData: any) {
     this.transactions.push(formData);
   }
+
+  onCancelled(cancelled: boolean) {
+    this.formVisible = false;
+  }
 }

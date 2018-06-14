@@ -1,43 +1,69 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 // Get Fake Data
-import { payeeData } from '../../../assets/payees';
-import { categoryData } from '../../../assets/categories';
+import {payeeData} from '../../../assets/payees';
+import {categoryData} from '../../../assets/categories';
 
 @Component({
   selector: 'transaction-form',
   templateUrl: './transaction-form.component.html',
-  styleUrls: ['./transaction-form.component.css']
+  styleUrls: ['./transaction-form.component.css'],
 })
 export class TransactionFormComponent implements OnInit {
-
-  @Output()
-  submitted = new EventEmitter();
-
+  // Data
   payees: any;
   categories: any;
+  // Form
   formData: FormGroup;
+  // Form Controls
+  description: FormControl;
+  amount:      FormControl;
+  payeeID:     FormControl;
+  catID:       FormControl;
+  type:        FormControl;
 
-  constructor() { }
+  @Input() isFormVisible: boolean;
+  @Output() submitted = new EventEmitter<object>();
+  @Output() cancelled = new EventEmitter<boolean>();
+
+  constructor() {}
 
   ngOnInit() {
     // Populate categories & payees data
     this.categories = categoryData;
     this.payees = payeeData;
     // Setup form model
+    this.createFormControls();
+    this.createForm();
+  }
+
+  createForm() {
     this.formData = new FormGroup({
-      description: new FormControl();
-      amount:      new FormControl();
-      payeeID:     new FormControl();
-      catID:       new FormControl();
-      type:        new FormControl();
-    })
+      description: this.description,
+      amount:      this.amount,
+      payeeID:     this.payeeID,
+      catID:       this.catID,
+      type:        this.type,
+    });
+  }
+
+  createFormControls() {
+    this.description = new FormControl('', Validators.required);
+    this.amount      = new FormControl('', [Validators.required, amountValidator]);
+    this.payeeID     = new FormControl('', Validators.required);
+    this.catID       = new FormControl('', Validators.required);
+    this.type        = new FormControl('', Validators.required);
   }
 
   // TODO
   validateForm() {
     return true;
+  }
+
+  closeForm() {
+    this.formData.reset();
+    this.cancelled.emit(true);
   }
 
   submitData() {
@@ -46,4 +72,21 @@ export class TransactionFormComponent implements OnInit {
       this.formData.reset();
     }
   }
+
+  submitAndClose() {
+    this.submitData();
+    this.closeForm();
+  }
+}
+
+// Custom Validators
+function amountValidator(control: FormControl) {
+  let amount = control.value;
+  if (amount === 0 || amount < 0 ) {
+    return {
+      invalidAmount: true
+    };
+  }
+  // If the amount is valid
+  return null;
 }
