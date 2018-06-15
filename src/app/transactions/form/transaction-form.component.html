@@ -27,8 +27,15 @@
     <div class="form-group">
       <label>Amount</label>
       <div class="input-group">
+        <!-- Type -->
         <div class="input-group-prepend">
-          <span class="input-group-text">€</span>
+          <label class="switch">
+            <input
+              type="checkbox"
+              formControlName="income"
+            >
+            <span class="slider"></span>
+          </label>
         </div>
         <input
           type="number"
@@ -91,26 +98,6 @@
         </small>
       </div>
     </div>
-    <!-- Type -->
-    <div class="form-group">
-      <label>Type</label>
-      <select
-        formControlName="type"
-        class="form-control"
-        [ngClass]="{
-          'valid-input': type.valid && (type.touched || type.dirty),
-          'invalid-input': type.invalid && (type.touched || type.dirty)
-        }"
-        required>
-        <option value="inflow">Inflow</option>
-        <option value="outflow">Outflow</option>
-      </select>
-      <div *ngIf="type.errors && (type.touched || type.dirty)">
-        <small class="text-danger" *ngIf="type.errors.required">
-          Payee is required.
-        </small>
-      </div>
-    </div>
     <br>
     <!-- Submit Buttons -->
     <div class="form-row">
@@ -142,4 +129,8 @@
       </div>
     </div>
   </form>
+
+  <br>
+  <pre>Form Value: {{ formData.value | json }}</pre>
 </div>
+
