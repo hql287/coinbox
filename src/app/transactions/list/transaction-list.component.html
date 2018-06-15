@@ -13,15 +13,15 @@
     <tr *ngFor="let item of transactionsList; let i = index">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ item.description }}</td>
-      <td *ngIf="item.type == 'inflow'; else amount"
+      <td *ngIf="item.income; else amount"
         class="text-success">
         € {{ item.amount }}
       </td>
       <td>{{ item.payeeID }}</td>
-      <td *ngIf="item.type == 'outflow'; else catID">
+      <td *ngIf="!item.income; else catID">
         {{ item.catID }}
       </td>
-      <td *ngIf="item.type == 'inflow'; else type"
+      <td *ngIf="item.income; else type"
         class="text-success">
         <span class="badge badge-success">+</span>
         &nbsp;

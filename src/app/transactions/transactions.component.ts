@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Transaction } from '../interface/transaction';
 
 // Fake Data
 import { transactionData } from '../../assets/transactions';
@@ -10,9 +11,8 @@ import { transactionData } from '../../assets/transactions';
 })
 export class TransactionsComponent implements OnInit {
 
-  formData;
   formVisible: boolean;
-  transactions;
+  transactions: Transaction[];
 
   constructor() { }
 

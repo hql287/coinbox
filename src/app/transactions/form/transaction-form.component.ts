@@ -21,7 +21,7 @@ export class TransactionFormComponent implements OnInit {
   amount:      FormControl;
   payeeID:     FormControl;
   catID:       FormControl;
-  type:        FormControl;
+  income:      FormControl;
 
   @Input() isFormVisible: boolean;
   @Output() submitted = new EventEmitter<object>();
@@ -44,16 +44,16 @@ export class TransactionFormComponent implements OnInit {
       amount:      this.amount,
       payeeID:     this.payeeID,
       catID:       this.catID,
-      type:        this.type,
+      income:      this.income,
     });
   }
 
   createFormControls() {
     this.description = new FormControl('', Validators.required);
-    this.amount      = new FormControl('', [Validators.required, amountValidator]);
-    this.payeeID     = new FormControl('', Validators.required);
-    this.catID       = new FormControl('', Validators.required);
-    this.type        = new FormControl('', Validators.required);
+    this.amount      = new FormControl(null, [Validators.required, amountValidator]);
+    this.payeeID     = new FormControl(null, Validators.required);
+    this.catID       = new FormControl(null, Validators.required);
+    this.income      = new FormControl(false, Validators.required);
   }
 
   closeForm() {
@@ -77,9 +77,9 @@ export class TransactionFormComponent implements OnInit {
 // Custom Validators
 function amountValidator(control: FormControl) {
   let amount = control.value;
-  if (amount === 0 || amount < 0 ) {
+  if (amount === 0 || amount < 0) {
     return {
-      invalidAmount: true
+      invalidAmount: true,
     };
   }
   // If the amount is valid
