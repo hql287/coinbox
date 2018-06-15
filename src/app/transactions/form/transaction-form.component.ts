@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 // Get Fake Data
 import {payeeData} from '../../../assets/payees';
+import {accountsData} from '../../../assets/accounts';
 import {categoryData} from '../../../assets/categories';
 
 @Component({
@@ -11,17 +12,19 @@ import {categoryData} from '../../../assets/categories';
   styleUrls: ['./transaction-form.component.css'],
 })
 export class TransactionFormComponent implements OnInit {
-  // Data
+  // Fake Data
   payees: any;
+  accounts: any;
   categories: any;
   // Form
   formData: FormGroup;
   // Form Controls
   description: FormControl;
-  amount:      FormControl;
-  payeeID:     FormControl;
-  catID:       FormControl;
-  income:      FormControl;
+  amount: FormControl;
+  payeeID: FormControl;
+  catID: FormControl;
+  accountID: FormControl;
+  income: FormControl;
 
   @Input() isFormVisible: boolean;
   @Output() submitted = new EventEmitter<object>();
@@ -30,9 +33,10 @@ export class TransactionFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // Populate categories & payees data
-    this.categories = categoryData;
+    // Populate data holders
     this.payees = payeeData;
+    this.accounts = accountsData;
+    this.categories = categoryData;
     // Setup form model
     this.createFormControls();
     this.createForm();
@@ -41,19 +45,21 @@ export class TransactionFormComponent implements OnInit {
   createForm() {
     this.formData = new FormGroup({
       description: this.description,
-      amount:      this.amount,
-      payeeID:     this.payeeID,
-      catID:       this.catID,
-      income:      this.income,
+      amount: this.amount,
+      payeeID: this.payeeID,
+      catID: this.catID,
+      accountID: this.accountID,
+      income: this.income,
     });
   }
 
   createFormControls() {
-    this.description = new FormControl('', Validators.required);
-    this.amount      = new FormControl(null, [Validators.required, amountValidator]);
-    this.payeeID     = new FormControl(null, Validators.required);
-    this.catID       = new FormControl(null, Validators.required);
-    this.income      = new FormControl(false, Validators.required);
+    this.description = new FormControl('Something', Validators.required);
+    this.amount = new FormControl(20, [Validators.required, amountValidator]);
+    this.payeeID = new FormControl(this.payees[0].id, Validators.required);
+    this.catID = new FormControl(this.categories[0].id, Validators.required);
+    this.accountID = new FormControl(this.accounts[0].id, Validators.required);
+    this.income = new FormControl(false, Validators.requnuleired);
   }
 
   closeForm() {

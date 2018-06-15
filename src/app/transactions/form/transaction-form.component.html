@@ -56,6 +56,27 @@
         </small>
       </div>
     </div>
+    <!-- Account -->
+    <div class="form-group">
+      <label>Account</label>
+      <select
+        formControlName="accountID"
+        class="form-control"
+        [ngClass]="{
+          'valid-input': accountID.valid && (accountID.touched || accountID.dirty),
+          'invalid-input': accountID.invalid && (accountID.touched || accountID.dirty)
+        }"
+        required>
+        <option *ngFor="let acc of accounts" [value]="acc.id">
+          {{ acc.title }}
+        </option>
+      </select>
+      <div *ngIf="accountID.errors && (accountID.touched || accountID.dirty)">
+        <small class="text-danger" *ngIf="accountID.errors.required">
+          Account is required.
+        </small>
+      </div>
+    </div>
     <!-- Payee -->
     <div class="form-group">
       <label>Payee</label>

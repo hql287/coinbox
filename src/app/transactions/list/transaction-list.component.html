@@ -5,6 +5,7 @@
       <th scope="col">Description</th>
       <th scope="col">Amount</th>
       <th scope="col">Payee(ID)</th>
+      <th scope="col">Account(ID)</th>
       <th scope="col">Category(ID)</th>
       <th scope="col">Type</th>
     </tr>
@@ -15,9 +16,10 @@
       <td>{{ item.description }}</td>
       <td *ngIf="item.income; else amount"
         class="text-success">
-        € {{ item.amount }}
+        {{ item.amount | currency:'EUR':'symbol' }}
       </td>
       <td>{{ item.payeeID }}</td>
+      <td>{{ item.accountID }}</td>
       <td *ngIf="!item.income; else catID">
         {{ item.catID }}
       </td>
@@ -30,7 +32,7 @@
       <!-- Alternative Template -->
       <ng-template #amount>
         <td class="text-danger">
-          € {{ item.amount }}
+          {{ item.amount | currency:'EUR':'symbol' }}
         </td>
       </ng-template>
       <ng-template #catID>
