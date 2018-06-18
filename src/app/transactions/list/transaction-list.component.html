@@ -34,7 +34,9 @@
       {{ item.inflow ? (item.inflow | currency:'EUR':'symbol') : ''}}
     </div>
     <div class="tl__r__c stt" [ngClass]="{'text-success': item.clear}">
-      <i class="material-icons">done_all</i>
+      <span class="clear-transaction" (click)="markClear(item.id, item.clear)">
+        <i class="material-icons">done_all</i>
+      </span>
     </div>
   </div>
 </div>

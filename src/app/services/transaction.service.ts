@@ -37,4 +37,17 @@ export class TransactionServices {
     const filteredAccounts = accountsData.filter(acc => acc.id == accID);
     return filteredAccounts[0].title;
   }
+
+  updateClearState(currentTransactions, { transactionID, clear }) {
+    const filteredTransaction = currentTransactions.filter(transaction => transaction.id == transactionID)[0];
+    const newTransaction = Object.assign({}, filteredTransaction, { clear: !clear });
+    return currentTransactions.map(transaction => {
+      if (transaction.id == transactionID) {
+        return newTransaction;
+      } else {
+        return transaction;
+      }
+    })
+
+  }
 }
