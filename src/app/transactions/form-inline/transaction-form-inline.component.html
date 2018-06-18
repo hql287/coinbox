@@ -136,17 +136,17 @@
     <div class="tl__r__c btns">
       <button
         [disabled]="!formData.valid"
-        (click)="submitAndClose()"
-        type="button"
-        class="btn btn-sm btn-success">
-        Save Transaction
-      </button>
-      <button
-        [disabled]="!formData.valid"
         (click)="submitData()"
         type="button"
         class="btn btn-sm btn-success">
-        Save &amp; Add Another
+        Save
+      </button>
+      <button
+        [disabled]="!formData.valid"
+        (click)="submitAndClose()"
+        type="button"
+        class="btn btn-sm btn-success">
+        Save &amp; Close
       </button>
       <button
         (click)="closeForm()"
@@ -158,8 +158,3 @@
     <div class="tl__r__c stt"></div>
   </div>
 </form>
-
-<!-- <pre> -->
-<!--   inflow: {{ inflow.value | json }} -->
-<!--   outflow: {{ outflow.value | json }} -->
-<!-- </pre> -->
