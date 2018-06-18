@@ -11,7 +11,9 @@
 
 <br>
 
-<transaction-list [transactionsList]="transactions">
+<transaction-list
+  [transactionsList]="transactions"
+  (markedClear)="onMarkedClear($event)">
   <transaction-form-inline
     [isFormVisible]="formVisible"
     (submitted)="onFormSubmitted($event)"

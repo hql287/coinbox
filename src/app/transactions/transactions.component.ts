@@ -29,4 +29,10 @@ export class TransactionsComponent implements OnInit {
   onCancelled(cancelled: boolean) {
     this.formVisible = false;
   }
+
+  onMarkedClear({ transactionID, clear }) {
+    const currentTransactions = this.transactions;
+    const updatedTransactions = this.transactionServices.updateClearState(currentTransactions, { transactionID, clear });
+    this.transactions = updatedTransactions;
+  }
 }

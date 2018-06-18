@@ -1,5 +1,6 @@
 export const transactionData = [
   {
+    id: '1',
     payeeID: 6,
     accountID: 3,
     catID: 2,
@@ -9,6 +10,7 @@ export const transactionData = [
     clear: true,
   },
   {
+    id: '2',
     payeeID: 5,
     inflow: 0,
     outflow: 10,
@@ -18,6 +20,7 @@ export const transactionData = [
     clear: false,
   },
   {
+    id: '3',
     payeeID: 2,
     inflow: 0,
     outflow: 35,
@@ -27,6 +30,7 @@ export const transactionData = [
     clear: false,
   },
   {
+    id: '4',
     payeeID: 2,
     inflow: 0,
     outflow: 51,
@@ -36,6 +40,7 @@ export const transactionData = [
     clear: false,
   },
   {
+    id: '5',
     payeeID: 2,
     inflow: 0,
     outflow: 15,
