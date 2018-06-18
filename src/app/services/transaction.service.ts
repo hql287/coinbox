@@ -1,58 +1,40 @@
 // Modules
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+
+// Data
+import {transactionData} from '../../assets/transactions';
+import {accountsData} from '../../assets/accounts';
+import {categoryData} from '../../assets/categories';
+import {payeeData} from '../../assets/payees';
 
 @Injectable()
 export class TransactionServices {
-  // Holders
-  // transactions;
-  // categories;
-  // payees;
-  // categories;
-
-  constructor() {
-  }
+  constructor() {}
 
   getAllTransactions() {
-    return [
-      {
-        payeeID: 5,
-        amount: 10,
-        catID: 2,
-        note: 'Coffee Mug',
-        type: 'inflow',
-      },
-      {
-        payeeID: 2,
-        amount: 35,
-        catID: 2,
-        note: 'IKEA Blanket',
-        type: 'inflow',
-      },
-      {
-        payeeID: 2,
-        amount: 35,
-        catID: 2,
-        note: 'IKEA Blanket',
-        type: 'inflow',
-      }
-    ]
+    return transactionData;
   }
 
   getAllCategories() {
-
+    return categoryData;
   }
 
   getAllPayees() {
-
+    return payeeData;
   }
 
-  displayCategory() {
-
+  displayCategory(catID: string) {
+    const fiteredCategories = categoryData.filter(cat => cat.id == catID);
+    return fiteredCategories[0].title;
   }
 
-  displayPayee() {
+  displayPayee(payeeID: string) {
+    const filteredPayees = payeeData.filter(payee => payee.id == payeeID);
+    return filteredPayees[0].title;
+  }
 
+  displayAccount(accID: string) {
+    const filteredAccounts = accountsData.filter(acc => acc.id == accID);
+    return filteredAccounts[0].title;
   }
 }
-
-

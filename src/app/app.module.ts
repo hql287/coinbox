@@ -20,7 +20,11 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {TransactionsComponent} from './transactions/transactions.component';
 import {TransactionControlsComponent} from './transactions/controls/transaction-controls.component';
 import {TransactionFormComponent} from './transactions/form/transaction-form.component';
+import {TransactionFormInlineComponent} from './transactions/form-inline/transaction-form-inline.component';
 import {TransactionListComponent} from './transactions/list/transaction-list.component';
+
+// Services
+import { TransactionServices } from './services/transaction.service';
 
 // Routes
 import {RouterModule, Routes} from '@angular/router';
@@ -48,13 +52,16 @@ const appRoutes: Routes = [
     TransactionListComponent,
     TransactionFormComponent,
     TransactionControlsComponent,
+    TransactionFormInlineComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    TransactionServices
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -7,11 +7,11 @@ import {accountsData} from '../../../assets/accounts';
 import {categoryData} from '../../../assets/categories';
 
 @Component({
-  selector: 'transaction-form',
-  templateUrl: './transaction-form.component.html',
-  styleUrls: ['./transaction-form.component.css'],
+  selector: 'transaction-form-inline',
+  templateUrl: './transaction-form-inline.component.html',
+  styleUrls: ['./transaction-form-inline.component.css'],
 })
-export class TransactionFormComponent implements OnInit {
+export class TransactionFormInlineComponent implements OnInit {
   // Fake Data
   payees: any;
   accounts: any;
@@ -20,18 +20,30 @@ export class TransactionFormComponent implements OnInit {
   formData: FormGroup;
   // Form Controls
   description: FormControl;
-  amount: FormControl;
+  inflow: FormControl;
+  outflow: FormControl;
   payeeID: FormControl;
   catID: FormControl;
   accountID: FormControl;
-  income: FormControl;
   clear: FormControl;
-
+  // Input & Output
   @Input() isFormVisible: boolean;
   @Output() submitted = new EventEmitter<object>();
   @Output() cancelled = new EventEmitter<boolean>();
 
   constructor() {}
+
+  clearInflow() {
+    if ( this.outflow.value !== '' && this.inflow.value !== '' ) {
+      this.inflow.reset('');
+    }
+  }
+
+  clearOutflow() {
+    if ( this.inflow.value !== '' && this.outflow.value !== '' ) {
+      this.outflow.reset('');
+    }
+  }
 
   ngOnInit() {
     // Populate data holders
@@ -46,23 +58,23 @@ export class TransactionFormComponent implements OnInit {
   createForm() {
     this.formData = new FormGroup({
       description: this.description,
-      amount: this.amount,
+      inflow: this.inflow,
+      outflow: this.outflow,
       payeeID: this.payeeID,
       catID: this.catID,
       accountID: this.accountID,
-      income: this.income,
       clear: this.clear,
     });
   }
 
   createFormControls() {
-    this.description = new FormControl('Something', Validators.required);
-    this.amount = new FormControl(20, [Validators.required, amountValidator]);
-    this.payeeID = new FormControl(this.payees[0].id, Validators.required);
-    this.catID = new FormControl(this.categories[0].id, Validators.required);
-    this.accountID = new FormControl(this.accounts[0].id, Validators.required);
-    this.income = new FormControl(false, Validators.required);
-    this.clear = new FormControl(false, Validators.required);
+    this.description = new FormControl('', Validators.required);
+    this.inflow      = new FormControl('', amountValidator);
+    this.outflow     = new FormControl('', amountValidator);
+    this.payeeID     = new FormControl(this.payees[0].id, Validators.required);
+    this.catID       = new FormControl(this.categories[0].id, Validators.required);
+    this.accountID   = new FormControl(this.accounts[0].id, Validators.required);
+    this.clear       = new FormControl(false);
   }
 
   closeForm() {
@@ -85,12 +97,11 @@ export class TransactionFormComponent implements OnInit {
 
 // Custom Validators
 function amountValidator(control: FormControl) {
-  let amount = control.value;
-  if (amount === 0 || amount < 0) {
+  if (control.value === 0 || control.value < 0) {
     return {
       invalidAmount: true,
     };
   }
-  // If the amount is valid
   return null;
 }
+

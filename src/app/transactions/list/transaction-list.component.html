@@ -1,50 +1,40 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Description</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Payee(ID)</th>
-      <th scope="col">Account(ID)</th>
-      <th scope="col">Category(ID)</th>
-      <th scope="col">Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of transactionsList; let i = index">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ item.description }}</td>
-      <td *ngIf="item.income; else amount"
-        class="text-success">
-        {{ item.amount | currency:'EUR':'symbol' }}
-      </td>
-      <td>{{ item.payeeID }}</td>
-      <td>{{ item.accountID }}</td>
-      <td *ngIf="!item.income; else catID">
-        {{ item.catID }}
-      </td>
-      <td *ngIf="item.income; else type"
-        class="text-success">
-        <span class="badge badge-success">+</span>
-        &nbsp;
-        Income
-      </td>
-      <!-- Alternative Template -->
-      <ng-template #amount>
-        <td class="text-danger">
-          {{ item.amount | currency:'EUR':'symbol' }}
-        </td>
-      </ng-template>
-      <ng-template #catID>
-        <td>--</td>
-      </ng-template>
-      <ng-template #type>
-        <td class="text-danger">
-          <span class="badge badge-danger">-</span>
-          &nbsp;
-          Expense
-        </td>
-      </ng-template>
-    </tr>
-  </tbody>
-</table>
+<div class="tl">
+
+  <!-- Header -->
+  <div class="tl__r header">
+    <div class="tl__r__c box"><input type="checkbox"></div>
+    <div class="tl__r__c acc">Account(ID)</div>
+    <div class="tl__r__c payee">Payee(ID)</div>
+    <div class="tl__r__c cat">Category(ID)</div>
+    <div class="tl__r__c desc">Description</div>
+    <div class="tl__r__c out">Outflow</div>
+    <div class="tl__r__c in">Inflow</div>
+    <div class="tl__r__c stt">Status</div>
+  </div>
+
+  <ng-content></ng-content>
+
+  <!-- Body -->
+  <div class="tl__r body" *ngFor="let item of transactionsList">
+    <div class="tl__r__c box"><input type="checkbox"></div>
+    <div class="tl__r__c acc">
+      {{ transactionServices.displayAccount(item.accountID) }}
+    </div>
+    <div class="tl__r__c payee">
+      {{ transactionServices.displayPayee(item.payeeID) }}
+    </div>
+    <div class="tl__r__c cat">
+      {{ item.catID ? transactionServices.displayCategory(item.catID) : '--' }}
+      </div>
+    <div class="tl__r__c desc">{{ item.description }}</div>
+    <div class="tl__r__c out text-danger">
+      {{ item.outflow ? (item.outflow | currency:'EUR':'symbol') : ''}}
+    </div>
+    <div class="tl__r__c in text-success">
+      {{ item.inflow ? (item.inflow | currency:'EUR':'symbol') : ''}}
+    </div>
+    <div class="tl__r__c stt" [ngClass]="{'text-success': item.clear}">
+      <i class="material-icons">done_all</i>
+    </div>
+  </div>
+</div>

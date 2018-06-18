@@ -12,11 +12,18 @@
 <br>
 
 <transaction-list [transactionsList]="transactions">
+  <transaction-form-inline
+    [isFormVisible]="formVisible"
+    (submitted)="onFormSubmitted($event)"
+    (cancelled)="onCancelled($event)">
+  </transaction-form-inline>
 </transaction-list>
 
-<transaction-form
-  [isFormVisible]="formVisible"
-  (submitted)="onFormSubmitted($event)"
-  (cancelled)="onCancelled($event)">
-</transaction-form>
+<!-- <transaction-form -->
+<!--   [isFormVisible]="formVisible" -->
+<!--   (submitted)="onFormSubmitted($event)" -->
+<!--   (cancelled)="onCancelled($event)"> -->
+<!-- </transaction-form> -->
 
+
+    <!-- *ngIf="formVisible" -->

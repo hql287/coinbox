@@ -1,42 +1,42 @@
 export const categoryData = [
   {
     id: 1,
-    label: 'Saving',
+    title: 'Saving',
   },
   {
     id: 2,
-    label: 'Rent',
+    title: 'Rent',
   },
   {
     id: 3,
-    label: 'Education',
+    title: 'Education',
   },
   {
     id: 4,
-    label: 'Transportation',
+    title: 'Transportation',
   },
   {
     id: 5,
-    label: 'Health',
+    title: 'Health',
   },
   {
     id: 6,
-    label: 'Internet',
+    title: 'Internet',
   },
   {
     id: 7,
-    label: 'Phone',
+    title: 'Phone',
   },
   {
     id: 8,
-    label: 'Clothes',
+    title: 'Clothes',
   },
   {
     id: 9,
-    label: 'Pet Care',
+    title: 'Pet Care',
   },
   {
     id: 10,
-    label: 'Groceries',
+    title: 'Groceries',
   },
 ];

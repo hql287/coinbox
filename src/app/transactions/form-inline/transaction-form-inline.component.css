@@ -1,0 +1,20 @@
+.tf-inline {
+  background: #f8f9fa;
+  color: #fff;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+  height: 100%;
+  /* Animate */
+  padding: 4px;
+  max-height: 100px;
+  transition: all 0.25s ease;
+}
+
+.tf-inline__buttons {
+  flex: 1;
+  > * {
+    margin-left: 10px;
+  }
+
+}

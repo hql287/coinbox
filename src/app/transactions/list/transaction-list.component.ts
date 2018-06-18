@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TransactionServices } from '../../services/transaction.service';
 
 @Component({
   selector: 'transaction-list',
@@ -9,7 +10,7 @@ export class TransactionListComponent implements OnInit {
 
   @Input() transactionsList;
 
-  constructor() { }
+  constructor(private transactionServices: TransactionServices) { }
 
   ngOnInit() {
   }

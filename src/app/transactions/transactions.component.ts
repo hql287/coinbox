@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Transaction } from '../interface/transaction';
-
-// Fake Data
-import { transactionData } from '../../assets/transactions';
+import { TransactionServices } from '../services/transaction.service';
 
 @Component({
   selector: 'app-transactions',
@@ -12,13 +9,13 @@ import { transactionData } from '../../assets/transactions';
 export class TransactionsComponent implements OnInit {
 
   formVisible: boolean;
-  transactions: Transaction[];
+  transactions: object[];
 
-  constructor() { }
+  constructor(private transactionServices: TransactionServices) { }
 
   ngOnInit() {
     this.formVisible = true;
-    this.transactions = transactionData;
+    this.transactions = this.transactionServices.getAllTransactions();
   }
 
   onToggleForm(isVisible: boolean) {

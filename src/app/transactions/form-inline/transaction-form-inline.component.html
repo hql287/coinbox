@@ -1,0 +1,165 @@
+<form class="tf-inline" [formGroup]="formData"
+    [style.max-height]="isFormVisible ? '100px' : '0'"
+    [style.padding]="isFormVisible ? '4px' : '0'">
+  <div class="tl__r bare">
+    <!-- Checkbox -->
+    <div class="tl__r__c box"></div>
+    <!-- Account -->
+    <div class="tl__r__c acc">
+      <select
+        formControlName="accountID"
+        class="form-control"
+        [ngClass]="{
+          'valid-input': accountID.valid && (accountID.touched || accountID.dirty),
+          'invalid-input': accountID.invalid && (accountID.touched || accountID.dirty)
+        }"
+        required>
+        <option *ngFor="let acc of accounts" [value]="acc.id">
+          {{ acc.title }}
+        </option>
+      </select>
+      <!-- <div *ngIf="accountID.errors && (accountID.touched || accountID.dirty)"> -->
+      <!--   <small class="text-danger" *ngIf="accountID.errors.required"> -->
+      <!--     Account is required. -->
+      <!--   </small> -->
+      <!-- </div> -->
+    </div>
+
+    <!-- Payee -->
+    <div class="tl__r__c payee">
+      <select
+        formControlName="payeeID"
+        class="form-control"
+        [ngClass]="{
+          'valid-input': payeeID.valid && (payeeID.touched || payeeID.dirty),
+          'invalid-input': payeeID.invalid && (payeeID.touched || payeeID.dirty)
+        }"
+        required>
+        <option *ngFor="let payee of payees" [value]="payee.id">
+          {{ payee.title }}
+        </option>
+      </select>
+      <!-- <div *ngIf="payeeID.errors && (payeeID.touched || payeeID.dirty)"> -->
+      <!--   <small class="text-danger" *ngIf="payeeID.errors.required"> -->
+      <!--     Payee is required. -->
+      <!--   </small> -->
+      <!-- </div> -->
+    </div>
+
+    <!-- Category -->
+    <div class="tl__r__c cat">
+      <select
+        formControlName="catID"
+        class="form-control"
+        [ngClass]="{
+          'valid-input': catID.valid && (catID.touched || catID.dirty),
+          'invalid-input': catID.invalid && (catID.touched || catID.dirty)
+        }"
+        required>
+        <option *ngFor="let cat of categories" [value]="cat.id">
+          {{ cat.title }}
+        </option>
+      </select>
+      <!-- <div *ngIf="catID.errors && (catID.touched || catID.dirty)"> -->
+      <!--   <small class="text-danger" *ngIf="catID.errors.required"> -->
+      <!--     Payee is required. -->
+      <!--   </small> -->
+      <!-- </div> -->
+    </div>
+
+    <!-- Description -->
+    <div class="tl__r__c desc">
+      <input
+        formControlName="description"
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'valid-input': description.valid && (description.touched || description.dirty),
+          'invalid-input': description.invalid && (description.touched || description.dirty)
+        }"
+        required>
+      <!-- <div *ngIf="description.errors && (description.touched || description.dirty)"> -->
+      <!--   <small class="text-danger" *ngIf="description.errors.required"> -->
+      <!--     Description is required. -->
+      <!--   </small> -->
+      <!-- </div> -->
+    </div>
+
+    <!-- Outflow -->
+    <div class="tl__r__c out">
+      <input
+        formControlName="outflow"
+        (ngModelChange)="clearInflow($event)"
+        ([ngModel])="outflow"
+        [ngClass]="{
+          'valid-input': outflow.valid && (outflow.touched || outflow.dirty),
+          'invalid-input': outflow.invalid && (outflow.touched || outflow.dirty)
+        }"
+        type="number"
+        class="form-control">
+      <!-- <div *ngIf="outflow.errors && (outflow.touched || outflow.dirty)"> -->
+      <!--   <small class="text-danger" *ngIf="outflow.errors.required"> -->
+      <!--     Amount is required. -->
+      <!--   </small> -->
+      <!--   <small class="text-danger" *ngIf="outflow.errors.invalidAmount"> -->
+      <!--     Amount cannot be zero or a nagative number. -->
+      <!--   </small> -->
+      <!-- </div> -->
+    </div>
+
+    <!-- Inflow -->
+    <div class="tl__r__c in">
+      <input
+        formControlName="inflow"
+        (ngModelChange)="clearOutflow($event)"
+        ([ngModel])="inflow"
+        [ngClass]="{
+          'valid-input': inflow.valid && (inflow.touched || inflow.dirty),
+          'invalid-input': inflow.invalid && (inflow.touched || inflow.dirty)
+        }"
+        type="number"
+        class="form-control">
+      <!-- <div *ngIf="inflow.errors && (inflow.touched || inflow.dirty)"> -->
+      <!--   <small class="text-danger" *ngIf="inflow.errors.required"> -->
+      <!--     Amount is required. -->
+      <!--   </small> -->
+      <!--   <small class="text-danger" *ngIf="inflow.errors.invalidAmount"> -->
+      <!--     Amount cannot be zero or a nagative number. -->
+      <!--   </small> -->
+      <!-- </div> -->
+    </div>
+
+    <!-- Status -->
+    <div class="tl__r__c stt"></div>
+  </div>
+  <div class="tl__r bare">
+    <div class="tl__r__c btns">
+      <button
+        [disabled]="!formData.valid"
+        (click)="submitAndClose()"
+        type="button"
+        class="btn btn-sm btn-success">
+        Save Transaction
+      </button>
+      <button
+        [disabled]="!formData.valid"
+        (click)="submitData()"
+        type="button"
+        class="btn btn-sm btn-success">
+        Save &amp; Add Another
+      </button>
+      <button
+        (click)="closeForm()"
+        type="button"
+        class="btn btn-sm btn-danger">
+        Cancel
+      </button>
+    </div>
+    <div class="tl__r__c stt"></div>
+  </div>
+</form>
+
+<!-- <pre> -->
+<!--   inflow: {{ inflow.value | json }} -->
+<!--   outflow: {{ outflow.value | json }} -->
+<!-- </pre> -->
