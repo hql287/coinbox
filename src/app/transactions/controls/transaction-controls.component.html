@@ -2,16 +2,31 @@
   <div class="col-md-6">
     <button
       type="button"
-      class="btn btn-outline-primary"
+      class="btn btn-primary d-flex align-items-center"
       (click)="toggleForm()">
-      Add A New Transaction
+      <i class="material-icons">add_box</i>
+      &nbsp;
+      New Transaction
     </button>
   </div>
   <div class="col-md-6 text-right">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-light">Left</button>
-      <button type="button" class="btn btn-light">Middle</button>
-      <button type="button" class="btn btn-light">Right</button>
+    <button
+      type="button"
+      class="btn btn-outline-secondary d-flex align-items-center"
+      (click)="generateTransactions()">
+      <i class="material-icons">add_box</i>
+      &nbsp;
+      Generate
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger d-flex align-items-center"
+      (click)="clearTransactions()">
+      <i class="material-icons">delete</i>
+      &nbsp;
+      Clear
+    </button>
     </div>
   </div>
 </div>

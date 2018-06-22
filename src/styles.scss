@@ -56,13 +56,13 @@
 }
 
 .tl__r__c.box   { flex: .5; font-size: 16px; }
-.tl__r__c.out   { flex: 2; }
-.tl__r__c.in    { flex: 2; }
-.tl__r__c.desc  { flex: 3; }
-.tl__r__c.payee { flex: 3; }
-.tl__r__c.acc   { flex: 2; }
-.tl__r__c.cat   { flex: 3; }
-.tl__r__c.stt   { flex: 1; }
+.tl__r__c.desc  { flex: 4; }
+.tl__r__c.payee { flex: 2.5; }
+.tl__r__c.acc   { flex: 2.5; }
+.tl__r__c.cat   { flex: 1.5; }
+.tl__r__c.out   { flex: 1; }
+.tl__r__c.in    { flex: 1; }
+.tl__r__c.stt   { flex: 0.5; }
 .tl__r__c.btns  {
   flex: 15.5;
   justify-content: flex-end;

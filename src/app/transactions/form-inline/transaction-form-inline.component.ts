@@ -1,10 +1,6 @@
 import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-
-// Get Fake Data
-import {payeeData} from '../../../assets/payees';
-import {accountsData} from '../../../assets/accounts';
-import {categoryData} from '../../../assets/categories';
+import {TransactionServices} from '../../services/transaction.service';
 
 @Component({
   selector: 'transaction-form-inline',
@@ -13,9 +9,9 @@ import {categoryData} from '../../../assets/categories';
 })
 export class TransactionFormInlineComponent implements OnInit {
   // Fake Data
-  payees: any;
-  accounts: any;
-  categories: any;
+  payees: object[];
+  accounts: object[];
+  categories: object[];
   // Form
   formData: FormGroup;
   // Form Controls
@@ -31,25 +27,25 @@ export class TransactionFormInlineComponent implements OnInit {
   @Output() submitted = new EventEmitter<object>();
   @Output() cancelled = new EventEmitter<boolean>();
 
-  constructor() {}
+  constructor(private transactionServices: TransactionServices) {}
 
   clearInflow() {
-    if ( this.outflow.value !== '' && this.inflow.value !== '' ) {
+    if (this.outflow.value !== '' && this.inflow.value !== '') {
       this.inflow.reset('');
     }
   }
 
   clearOutflow() {
-    if ( this.inflow.value !== '' && this.outflow.value !== '' ) {
+    if (this.inflow.value !== '' && this.outflow.value !== '') {
       this.outflow.reset('');
     }
   }
 
   ngOnInit() {
     // Populate data holders
-    this.payees = payeeData;
-    this.accounts = accountsData;
-    this.categories = categoryData;
+    this.payees = this.transactionServices.getAllPayees();
+    this.accounts = this.transactionServices.getAllAccounts();
+    this.categories = this.transactionServices.getAllCategories();
     // Setup form model
     this.createFormControls();
     this.createForm();
@@ -69,12 +65,12 @@ export class TransactionFormInlineComponent implements OnInit {
 
   createFormControls() {
     this.description = new FormControl('', Validators.required);
-    this.inflow      = new FormControl('', amountValidator);
-    this.outflow     = new FormControl('', amountValidator);
-    this.payeeID     = new FormControl(this.payees[0].id, Validators.required);
-    this.catID       = new FormControl(this.categories[0].id, Validators.required);
-    this.accountID   = new FormControl(this.accounts[0].id, Validators.required);
-    this.clear       = new FormControl(false);
+    this.inflow = new FormControl('', amountValidator);
+    this.outflow = new FormControl('', amountValidator);
+    this.payeeID = new FormControl(this.payees[0].id, Validators.required);
+    this.catID = new FormControl(this.categories[0].id, Validators.required);
+    this.accountID = new FormControl(this.accounts[0].id, Validators.required);
+    this.clear = new FormControl(false);
   }
 
   closeForm() {
@@ -104,4 +100,3 @@ function amountValidator(control: FormControl) {
   }
   return null;
 }
-
