@@ -7,14 +7,25 @@ import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 })
 export class TransactionControlsComponent implements OnInit {
   @Input() isFormVisible: boolean;
-  @Output() toggled = new EventEmitter<boolean>();
+  @Output() toggle = new EventEmitter<boolean>();
+  @Output() generate = new EventEmitter<number>();
+  @Output() clear = new EventEmitter<void>();
+
 
   constructor() {}
 
   ngOnInit() {}
 
   toggleForm() {
-    this.toggled.emit(!this.isFormVisible);
+    this.toggle .emit(!this.isFormVisible);
     this.isFormVisible = !this.isFormVisible;
+  }
+
+  generateTransactions() {
+    this.generate.emit(5);
+  }
+
+  clearTransactions() {
+    this.clear.emit();
   }
 }

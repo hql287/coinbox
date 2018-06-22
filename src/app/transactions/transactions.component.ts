@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { TransactionServices } from '../services/transaction.service';
+import {Component, OnInit} from '@angular/core';
+import {TransactionServices} from '../services/transaction.service';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.css']
+  styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent implements OnInit {
-
   formVisible: boolean;
   transactions: object[];
 
-  constructor(private transactionServices: TransactionServices) { }
+  constructor(private transactionServices: TransactionServices) {}
 
   ngOnInit() {
     this.formVisible = true;
     this.transactions = this.transactionServices.getAllTransactions();
+  }
+
+  onGenerateTransactions(qty: number) {
+    const newTransactions = this.transactionServices.genTransactions(qty);
+    this.transactions = [...this.transactions, ...newTransactions];
+  }
+
+  onClearTransactions() {
+    this.transactions = [];
   }
 
   onToggleForm(isVisible: boolean) {
@@ -30,9 +38,12 @@ export class TransactionsComponent implements OnInit {
     this.formVisible = false;
   }
 
-  onMarkedClear({ transactionID, clear }) {
+  onMarkedClear({transactionID, clear}) {
     const currentTransactions = this.transactions;
-    const updatedTransactions = this.transactionServices.updateClearState(currentTransactions, { transactionID, clear });
+    const updatedTransactions = this.transactionServices.updateClearState(
+      currentTransactions,
+      {transactionID, clear},
+    );
     this.transactions = updatedTransactions;
   }
 }

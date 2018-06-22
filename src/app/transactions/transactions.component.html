@@ -6,7 +6,9 @@
 
 <transaction-controls
   [isFormVisible]="formVisible"
-  (toggled)="onToggleForm($event)">
+  (toggle)="onToggleForm($event)"
+  (generate)="onGenerateTransactions($event)"
+  (clear)="onClearTransactions($event)">
 </transaction-controls>
 
 <br>
