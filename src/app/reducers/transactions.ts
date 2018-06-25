@@ -2,20 +2,28 @@ import {Transaction} from '../models/transaction';
 import * as TransactionActions from '../actions/transactions';
 import * as TransactionTypes from '../constants';
 
-const initialState = [];
+const initialState = {
+  formVisible: false,
+  data: [],
+};
 
 export function TransactionsReducer(
-  state: Transaction[] = [...initialState],
-  action: TransactionActions.Actions
+  state: any = initialState,
+  action: TransactionActions.Actions,
 ) {
   switch (action.type) {
     case TransactionTypes.TRANSACTION_GENERATE:
-      console.log('action.payload: ', action.payload);
-      return [...state, ...action.payload];
+      return Object.assign({}, state, {
+        data: [...state.data, ...action.payload],
+      });
     case TransactionTypes.TRANSACTION_ADD:
-      return [...state, action.payload];
+      return Object.assign({}, state, {
+        data: [...state.data, action.payload],
+      });
     case TransactionTypes.TRANSACTION_REMOVE_ALL:
-      return [];
+      return Object.assign({}, state, {
+        data: [],
+      });
     default:
       return state;
   }

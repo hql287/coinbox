@@ -23,7 +23,7 @@ export class TransactionListComponent implements OnInit {
     private transactionServices: TransactionServices,
     private store: Store<AppState>
   ) {
-    this.transactions$ = store.select('transactions');
+    this.transactions$ = store.select(state => state.transactions.data);
   }
 
   ngOnInit() { }
