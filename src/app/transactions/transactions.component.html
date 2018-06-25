@@ -4,30 +4,10 @@
 
 <br>
 
-<transaction-controls
-  [isFormVisible]="formVisible"
-  (toggle)="onToggleForm($event)"
-  (generate)="onGenerateTransactions($event)"
-  (clear)="onClearTransactions($event)">
-</transaction-controls>
+<transaction-controls></transaction-controls>
 
 <br>
 
-<transaction-list
-  [transactionsList]="transactions"
-  (markedClear)="onMarkedClear($event)">
-  <transaction-form-inline
-    [isFormVisible]="formVisible"
-    (submitted)="onFormSubmitted($event)"
-    (cancelled)="onCancelled($event)">
-  </transaction-form-inline>
+<transaction-list>
+  <transaction-form-inline></transaction-form-inline>
 </transaction-list>
-
-<!-- <transaction-form -->
-<!--   [isFormVisible]="formVisible" -->
-<!--   (submitted)="onFormSubmitted($event)" -->
-<!--   (cancelled)="onCancelled($event)"> -->
-<!-- </transaction-form> -->
-
-
-    <!-- *ngIf="formVisible" -->

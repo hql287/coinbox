@@ -1,6 +1,6 @@
 <form class="tf-inline" [formGroup]="formData"
-    [style.max-height]="isFormVisible ? '100px' : '0'"
-    [style.padding]="isFormVisible ? '4px' : '0'">
+    [style.max-height]="(isFormVisible$ | async) ? '100px' : '0'"
+    [style.padding]="(isFormVisible$ | async) ? '4px' : '0'">
   <div class="tl__r bare">
     <!-- Checkbox -->
     <div class="tl__r__c box"></div>

@@ -1,6 +1,21 @@
 import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TransactionServices} from '../../services/transaction.service';
+import { v4 as uuid } from 'uuid';
+
+// Interface
+import { Transaction } from '../../models/transaction';
+
+// Store
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.state';
+
+// Actions
+import {
+  ToggleTransactionForm,
+  AddTransaction,
+  RemoveTransaction
+} from '../../actions/transactions';
 
 @Component({
   selector: 'transaction-form-inline',
@@ -9,9 +24,9 @@ import {TransactionServices} from '../../services/transaction.service';
 })
 export class TransactionFormInlineComponent implements OnInit {
   // Fake Data
-  payees: object[];
-  accounts: object[];
-  categories: object[];
+  payees: any[];
+  accounts: any[];
+  categories: any[];
   // Form
   formData: FormGroup;
   // Form Controls
@@ -22,12 +37,18 @@ export class TransactionFormInlineComponent implements OnInit {
   catID: FormControl;
   accountID: FormControl;
   clear: FormControl;
+  // Form Visibility
+  isFormVisible$: Observable<boolean>;
   // Input & Output
-  @Input() isFormVisible: boolean;
   @Output() submitted = new EventEmitter<object>();
   @Output() cancelled = new EventEmitter<boolean>();
 
-  constructor(private transactionServices: TransactionServices) {}
+  constructor(
+    private transactionServices: TransactionServices,
+    private store: Store<AppState>
+  ) {
+    this.isFormVisible$ = store.select(state => state.transactions.formVisible);
+  }
 
   clearInflow() {
     if (this.outflow.value !== '' && this.inflow.value !== '') {
@@ -74,13 +95,21 @@ export class TransactionFormInlineComponent implements OnInit {
   }
 
   closeForm() {
-    this.cancelled.emit(true);
     this.formData.reset();
+    this.store.dispatch(new ToggleTransactionForm());
   }
 
   submitData() {
     if (this.formData.valid) {
-      this.submitted.emit(this.formData.value);
+      // Add TransactionID
+      const TransactionData = Object.assign({}, this.formData.value, {
+        id: uuid(),
+      });
+      // Create Payload
+        const newTransaction = new AddTransaction(TransactionData);
+      // Dispatch
+      this.store.dispatch(newTransaction);
+      // Reset Form Data
       this.formData.reset();
     }
   }

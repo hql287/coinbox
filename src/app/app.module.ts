@@ -1,7 +1,7 @@
 // Modules
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 // Components
 import {AppComponent} from './app.component';
@@ -24,7 +24,15 @@ import {TransactionFormInlineComponent} from './transactions/form-inline/transac
 import {TransactionListComponent} from './transactions/list/transaction-list.component';
 
 // Services
-import { TransactionServices } from './services/transaction.service';
+import {TransactionServices} from './services/transaction.service';
+
+// NgRx/Store
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import {
+  TransactionsReducer
+} from './reducers/transactions';
+import { environment } from '../environments/environment';
 
 // Routes
 import {RouterModule, Routes} from '@angular/router';
@@ -57,11 +65,16 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    StoreModule.forRoot({
+      transactions: TransactionsReducer
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
-  providers: [
-    TransactionServices
-  ],
+  providers: [TransactionServices],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
