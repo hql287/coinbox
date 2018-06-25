@@ -12,6 +12,7 @@ import { AppState } from '../../app.state';
 
 // Actions
 import {
+  ToggleTransactionForm,
   AddTransaction,
   RemoveTransaction
 } from '../../actions/transactions';
@@ -94,8 +95,8 @@ export class TransactionFormInlineComponent implements OnInit {
   }
 
   closeForm() {
-    this.cancelled.emit(true);
     this.formData.reset();
+    this.store.dispatch(new ToggleTransactionForm());
   }
 
   submitData() {

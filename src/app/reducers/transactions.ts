@@ -3,7 +3,7 @@ import * as TransactionActions from '../actions/transactions';
 import * as TransactionTypes from '../constants';
 
 const initialState = {
-  formVisible: false,
+  formVisible: true,
   data: [],
 };
 
