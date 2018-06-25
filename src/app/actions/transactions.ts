@@ -2,22 +2,21 @@ import {Injectable} from '@angular/core';
 import {Action} from '@ngrx/store';
 import {Transaction} from '../models/transaction';
 
-import {
-  TRANSACTION_ADD,
-  TRANSACTION_GENERATE,
-  TRANSACTION_REMOVE,
-  TRANSACTION_UPDATE,
-}
-from '../constants';
+import * as TransactionTypes from '../constants';
 
 export class AddTransaction implements Action {
-  readonly type = TRANSACTION_ADD;
+  readonly type = TransactionTypes.TRANSACTION_ADD;
   constructor(public payload: Transaction) { }
 }
 
+export class RemoveAllTransactions implements Action {
+  readonly type = TransactionTypes.TRANSACTION_REMOVE_ALL;
+  constructor() { }
+}
+
 export class RemoveTransaction implements Action {
-  readonly type = TRANSACTION_REMOVE;
+  readonly type = TransactionTypes.TRANSACTION_REMOVE;
   constructor(public payload: string) { }
 }
 
-export type Actions = AddTransaction | RemoveTransaction ;
+export type Actions = AddTransaction | RemoveTransaction | RemoveAllTransactions ;

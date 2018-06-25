@@ -1,11 +1,6 @@
 import {Transaction} from '../models/transaction';
 import * as TransactionActions from '../actions/transactions';
-import {
-  TRANSACTION_ADD,
-  TRANSACTION_GENERATE,
-  TRANSACTION_REMOVE,
-  TRANSACTION_UPDATE,
-} from '../constants';
+import * as TransactionTypes from '../constants';
 
 const initialState = [];
 
@@ -14,9 +9,10 @@ export function TransactionsReducer(
   action: TransactionActions.Actions
 ) {
   switch (action.type) {
-    case TRANSACTION_ADD:
-      console.log('Payload: ', action.payload);
+    case TransactionTypes.TRANSACTION_ADD:
       return [...state, action.payload];
+    case TransactionTypes.TRANSACTION_REMOVE_ALL:
+      return [];
     default:
       return state;
   }
