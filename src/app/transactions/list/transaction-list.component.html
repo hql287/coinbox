@@ -15,7 +15,7 @@
   <ng-content></ng-content>
 
   <!-- Body -->
-  <div class="tl__r body" *ngFor="let item of transactionsList">
+  <div class="tl__r body" *ngFor="let item of transactions$ | async">
     <div class="tl__r__c box"><input type="checkbox"></div>
     <div class="tl__r__c acc">
       {{ transactionServices.displayAccount(item.accountID) }}
