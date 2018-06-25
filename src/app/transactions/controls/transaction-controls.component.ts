@@ -10,6 +10,7 @@ import {AppState} from '../../app.state';
 
 // Actions
 import {
+  ToggleTransactionForm,
   GenerateTransactions,
   RemoveAllTransactions,
 } from '../../actions/transactions';
@@ -20,9 +21,6 @@ import {
   styleUrls: ['./transaction-controls.component.css'],
 })
 export class TransactionControlsComponent implements OnInit {
-  @Input() isFormVisible: boolean;
-  @Output() toggle = new EventEmitter<boolean>();
-
   constructor(
     private transactionServices: TransactionServices,
     private store: Store<AppState>,
@@ -31,15 +29,14 @@ export class TransactionControlsComponent implements OnInit {
   ngOnInit() {}
 
   toggleForm() {
-    this.toggle.emit(!this.isFormVisible);
-    this.isFormVisible = !this.isFormVisible;
+    this.store.dispatch(new ToggleTransactionForm());
   }
 
   generateTransactions() {
     const newTransactions = new GenerateTransactions(
       this.transactionServices.genTransactions(3),
     );
-    this.store.dispatch(newTransactions)
+    this.store.dispatch(newTransactions);
   }
 
   removeAllTransactions() {

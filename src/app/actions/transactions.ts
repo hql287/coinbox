@@ -24,8 +24,14 @@ export class RemoveTransaction implements Action {
   constructor(public payload: string) {}
 }
 
+export class ToggleTransactionForm implements Action {
+  readonly type = TransactionTypes.TRANSACTION_FORM_TOGGLE;
+  constructor() {}
+}
+
 export type Actions =
   | AddTransaction
   | RemoveTransaction
   | RemoveAllTransactions
   | GenerateTransactions
+  | ToggleTransactionForm

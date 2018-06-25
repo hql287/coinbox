@@ -24,6 +24,10 @@ export function TransactionsReducer(
       return Object.assign({}, state, {
         data: [],
       });
+    case TransactionTypes.TRANSACTION_FORM_TOGGLE:
+      return Object.assign({}, state, {
+        formVisible: !state.formVisible,
+      });
     default:
       return state;
   }
