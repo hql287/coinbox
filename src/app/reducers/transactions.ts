@@ -28,6 +28,19 @@ export function TransactionsReducer(
       return Object.assign({}, state, {
         formVisible: !state.formVisible,
       });
+
+    // Good place to try out @ngrx/effects
+    case TransactionTypes.TRANSACTION_MARK_CLEAR:
+      return Object.assign({}, state, {
+        data: state.data.map(item => {
+                if (item.id === action.payload) {
+                  return Object.assign({}, item, {
+                    clear: !item.clear
+                  });
+                }
+                return item;
+              })
+      });
     default:
       return state;
   }
