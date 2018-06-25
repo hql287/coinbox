@@ -9,6 +9,9 @@ export function TransactionsReducer(
   action: TransactionActions.Actions
 ) {
   switch (action.type) {
+    case TransactionTypes.TRANSACTION_GENERATE:
+      console.log('action.payload: ', action.payload);
+      return [...state, ...action.payload];
     case TransactionTypes.TRANSACTION_ADD:
       return [...state, action.payload];
     case TransactionTypes.TRANSACTION_REMOVE_ALL:

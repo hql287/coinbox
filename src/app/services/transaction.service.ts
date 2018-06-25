@@ -11,10 +11,10 @@ import {payeeData} from '../../assets/payees';
 
 @Injectable()
 export class TransactionServices {
-  payees: object[];
-  accounts: object[];
-  categories: object[];
-  transactions: object[];
+  payees: any[];
+  accounts: any[];
+  categories: any[];
+  transactions: any[];
 
   constructor() {
     this.seedData();

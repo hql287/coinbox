@@ -4,19 +4,28 @@ import {Transaction} from '../models/transaction';
 
 import * as TransactionTypes from '../constants';
 
+export class GenerateTransactions implements Action {
+  readonly type = TransactionTypes.TRANSACTION_GENERATE;
+  constructor(public payload: Transaction[]) {}
+}
+
 export class AddTransaction implements Action {
   readonly type = TransactionTypes.TRANSACTION_ADD;
-  constructor(public payload: Transaction) { }
+  constructor(public payload: Transaction) {}
 }
 
 export class RemoveAllTransactions implements Action {
   readonly type = TransactionTypes.TRANSACTION_REMOVE_ALL;
-  constructor() { }
+  constructor() {}
 }
 
 export class RemoveTransaction implements Action {
   readonly type = TransactionTypes.TRANSACTION_REMOVE;
-  constructor(public payload: string) { }
+  constructor(public payload: string) {}
 }
 
-export type Actions = AddTransaction | RemoveTransaction | RemoveAllTransactions ;
+export type Actions =
+  | AddTransaction
+  | RemoveTransaction
+  | RemoveAllTransactions
+  | GenerateTransactions
