@@ -8,9 +8,6 @@
 
 <br>
 
-<transaction-list (markedClear)="onMarkedClear($event)">
-  <transaction-form-inline
-    (submitted)="onFormSubmitted($event)"
-    (cancelled)="onCancelled($event)">
-  </transaction-form-inline>
+<transaction-list>
+  <transaction-form-inline></transaction-form-inline>
 </transaction-list>
