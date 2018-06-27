@@ -39,13 +39,10 @@ export class TransactionFormInlineComponent implements OnInit {
   clear: FormControl;
   // Form Visibility
   isFormVisible$: Observable<boolean>;
-  // Input & Output
-  @Output() submitted = new EventEmitter<object>();
-  @Output() cancelled = new EventEmitter<boolean>();
 
   constructor(
     private transactionServices: TransactionServices,
-    private store: Store<AppState>
+    private store: Store<AppState>,
   ) {
     this.isFormVisible$ = store.select(state => state.transactions.formVisible);
   }
