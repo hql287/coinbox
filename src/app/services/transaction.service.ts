@@ -3,12 +3,6 @@ import {Injectable, OnInit} from '@angular/core';
 import * as faker from 'faker';
 import { v4 as uuid } from 'uuid';
 
-// Data
-import {transactionData} from '../../assets/transactions';
-import {accountsData} from '../../assets/accounts';
-import {categoryData} from '../../assets/categories';
-import {payeeData} from '../../assets/payees';
-
 @Injectable()
 export class TransactionServices {
   payees: any[];

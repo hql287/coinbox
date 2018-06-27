@@ -1,5 +1,7 @@
-import {Injectable} from '@angular/core';
+// NgRx/Store
 import {Action} from '@ngrx/store';
+
+// Interface
 import {Transaction} from '../models/transaction';
 
 import * as TransactionTypes from '../constants';
