@@ -1,0 +1,29 @@
+.net-worth-badge {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.net-worth-badge__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #383d41;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  min-width: 150px;
+  text-align: center;
+}
+
+.net-worth-badge__inner h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.net-worth-badge__inner p {
+  font-size: 32px;
+  margin: 0;
+}
