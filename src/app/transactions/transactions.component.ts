@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 // Interface
 import {Transaction} from '../models/transaction';
@@ -11,16 +11,25 @@ import {reduce, map} from 'rxjs/operators';
 // App State
 import {AppState} from '../app.state';
 
+// Actions
+import {GenerateTransactions} from '../actions/transactions';
+
+// Services
+import {TransactionServices} from '../services/transaction.service';
+
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css'],
 })
-export class TransactionsComponent {
+export class TransactionsComponent implements OnInit {
   netWorth: number;
   transactions$: Observable<Transaction>;
 
-  constructor(store: Store<AppState>) {
+  constructor(
+    private transactionServices: TransactionServices,
+    private store: Store<AppState>,
+  ) {
     this.netWorth = 0;
     this.transactions$ = store.select(state => state.transactions.data);
     this.transactions$
@@ -31,6 +40,13 @@ export class TransactionsComponent {
       .subscribe(val => {
         this.netWorth = val;
       });
+  }
+
+  ngOnInit() {
+    const newTransactions = new GenerateTransactions(
+      this.transactionServices.genTransactions(3),
+    );
+    this.store.dispatch(newTransactions);
   }
 }
 
@@ -50,4 +66,3 @@ const getTransactions = map(items => {
 const getSum = map(items => {
   return items.reduce((currentValue, nextItem) => currentValue + nextItem, 0);
 });
-
