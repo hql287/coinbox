@@ -2,6 +2,7 @@ import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TransactionServices} from '../../services/transaction.service';
 import { v4 as uuid } from 'uuid';
+import { Observable } from 'rxjs';
 
 // Interface
 import { Transaction } from '../../models/transaction';
