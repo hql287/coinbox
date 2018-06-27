@@ -29,13 +29,17 @@ import {TransactionServices} from './services/transaction.service';
 // NgRx/Store
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import {
-  TransactionsReducer
-} from './reducers/transactions';
+import { TransactionsReducer } from './reducers/transactions';
+import { NotificationsReducer } from './reducers/notifications';
 import { environment } from '../environments/environment';
+
+// Effects
+import { EffectsModule } from '@ngrx/effects';
+import { TransactionEffects } from './effects/transaction.effects';
 
 // Routes
 import {RouterModule, Routes} from '@angular/router';
+import { NotificationComponent } from './notification/notification.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'transactions', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
@@ -61,14 +65,19 @@ const appRoutes: Routes = [
     TransactionFormComponent,
     TransactionControlsComponent,
     TransactionFormInlineComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     StoreModule.forRoot({
-      transactions: TransactionsReducer
+      transactions: TransactionsReducer,
+      notifications: NotificationsReducer,
     }),
+    EffectsModule.forRoot([
+      TransactionEffects
+    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
