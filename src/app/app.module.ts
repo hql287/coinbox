@@ -11,6 +11,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {BudgetComponent} from './budget/budget.component';
 import {ReportComponent} from './report/report.component';
 import {AccountComponent} from './account/account.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 // Layout Components
 import {HeaderComponent} from './header/header.component';
@@ -39,7 +40,6 @@ import { TransactionEffects } from './effects/transaction.effects';
 
 // Routes
 import {RouterModule, Routes} from '@angular/router';
-import { NotificationComponent } from './notification/notification.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'transactions', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     TransactionFormComponent,
     TransactionControlsComponent,
     TransactionFormInlineComponent,
-    NotificationComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

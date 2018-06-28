@@ -15,11 +15,11 @@ import {
 } from '../actions/notifications';
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css']
+  selector: 'app-notifications',
+  templateUrl: './notifications.component.html',
+  styleUrls: ['./notifications.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationsComponent implements OnInit {
 
   notifications$: Observable<Notification[]>;
 
