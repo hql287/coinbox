@@ -1,0 +1,15 @@
+<div
+  class="notification"
+  (click)="removeNotification()"
+  [ngClass]="{
+    'success' : noti.type == 'success',
+    'danger' : noti.type == 'danger',
+    'info' : noti.type == 'info',
+    'warning' : noti.type == 'warning'
+  }">
+  <i *ngIf="noti.type == 'success'" class="material-icons">check</i>
+  <i *ngIf="noti.type == 'info'" class="material-icons">info</i>
+  <i *ngIf="noti.type == 'danger'" class="material-icons">cancel</i>
+  <i *ngIf="noti.type == 'warning'" class="material-icons">warning</i>
+  <p>{{ noti.message }}</p>
+</div>

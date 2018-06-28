@@ -11,7 +11,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {BudgetComponent} from './budget/budget.component';
 import {ReportComponent} from './report/report.component';
 import {AccountComponent} from './account/account.component';
-import { NotificationsComponent } from './notifications/notifications.component';
+import {NotificationsComponent} from './notifications/notifications.component';
+import {NotiComponent} from './notifications/noti/noti.component';
 
 // Layout Components
 import {HeaderComponent} from './header/header.component';
@@ -28,15 +29,15 @@ import {TransactionListComponent} from './transactions/list/transaction-list.com
 import {TransactionServices} from './services/transaction.service';
 
 // NgRx/Store
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreModule } from '@ngrx/store';
-import { TransactionsReducer } from './reducers/transactions';
-import { NotificationsReducer } from './reducers/notifications';
-import { environment } from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {StoreModule} from '@ngrx/store';
+import {TransactionsReducer} from './reducers/transactions';
+import {NotificationsReducer} from './reducers/notifications';
+import {environment} from '../environments/environment';
 
 // Effects
-import { EffectsModule } from '@ngrx/effects';
-import { TransactionEffects } from './effects/transaction.effects';
+import {EffectsModule} from '@ngrx/effects';
+import {TransactionEffects} from './effects/transaction.effects';
 
 // Routes
 import {RouterModule, Routes} from '@angular/router';
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     TransactionControlsComponent,
     TransactionFormInlineComponent,
     NotificationsComponent,
+    NotiComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,9 +77,7 @@ const appRoutes: Routes = [
       transactions: TransactionsReducer,
       notifications: NotificationsReducer,
     }),
-    EffectsModule.forRoot([
-      TransactionEffects
-    ]),
+    EffectsModule.forRoot([TransactionEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

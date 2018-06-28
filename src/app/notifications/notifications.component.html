@@ -1,11 +1,7 @@
 <div class="notifications-container">
-  <div class="notification" *ngFor="let noti of notifications$ | async">
-    <h4>{{ noti.title }}</h4>
-    <p>{{ noti.description }}</p>
-    <button
-      type="button"
-      (click)="removeNotification(noti.id)">
-        Remove
-    </button>
-  </div>
+  <notification
+    [noti]="noti"
+    *ngFor="let noti of notifications$ | async"
+    (removed)="removeNotification($event)">
+  </notification>
 </div>

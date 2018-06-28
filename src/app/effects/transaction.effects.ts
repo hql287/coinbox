@@ -33,8 +33,7 @@ export class TransactionEffects {
         const newNotification = new NotificationActions.AddNotification({
           id: uuid(),
           type: 'success',
-          title: 'New Transaction',
-          description: 'A New transaction has been added successfully',
+          message: 'A New transaction has been added successfully',
         });
         this.store.dispatch(newNotification);
       }),
@@ -47,9 +46,8 @@ export class TransactionEffects {
       tap(action => {
         const newNotification = new NotificationActions.AddNotification({
           id: uuid(),
-          type: 'success',
-          title: 'Transaction Marked Clear',
-          description: 'A New transaction has been marked as clear successfully',
+          type: 'info',
+          message: 'Transaction has been marked as clear successfully',
         });
         this.store.dispatch(newNotification);
       }),
