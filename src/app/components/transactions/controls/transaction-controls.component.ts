@@ -2,18 +2,18 @@
 import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 
 // Services
-import {TransactionServices} from '../../services/transaction.service';
+import {TransactionServices} from '../../../services/transaction.service';
 
 // Store
 import {Store} from '@ngrx/store';
-import {AppState} from '../../app.state';
+import {AppState} from '../../../store/app.state';
 
 // Actions
 import {
   ToggleTransactionForm,
   GenerateTransactions,
   RemoveAllTransactions,
-} from '../../actions/transactions';
+} from '../../../store/actions/transactions';
 
 @Component({
   selector: 'transaction-controls',

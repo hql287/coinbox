@@ -1,5 +1,5 @@
 // import { Transaction } from './models/transaction';
-import { Notification } from './models/notification';
+import { Notification } from '../models/notification';
 
 export interface AppState {
   readonly transactions;

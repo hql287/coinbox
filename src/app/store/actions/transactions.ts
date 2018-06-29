@@ -2,7 +2,7 @@
 import {Action} from '@ngrx/store';
 
 // Interface
-import {Transaction} from '../models/transaction';
+import {Transaction} from '../../models/transaction';
 
 import * as TransactionTypes from '../constants';
 

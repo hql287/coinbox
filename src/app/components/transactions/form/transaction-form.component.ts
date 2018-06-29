@@ -2,9 +2,9 @@ import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 // Get Fake Data
-import {payeeData} from '../../../assets/payees';
-import {accountsData} from '../../../assets/accounts';
-import {categoryData} from '../../../assets/categories';
+import {payeeData} from '../../../../assets/payees.js';
+import {accountsData} from '../../../../assets/accounts';
+import {categoryData} from '../../../../assets/categories';
 
 @Component({
   selector: 'transaction-form',

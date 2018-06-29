@@ -1,14 +1,14 @@
 // Libs
 import { Component } from '@angular/core';
-import { TransactionServices } from '../../services/transaction.service';
+import { TransactionServices } from '../../../services/transaction.service';
 import { Observable } from 'rxjs';
 // Intefaces
-import { Transaction } from '../../models/transaction';
+import { Transaction } from '../../../models/transaction';
 // Store
 import { Store, select } from '@ngrx/store';
-import { AppState } from '../../app.state';
+import { AppState } from '../../../store/app.state';
 // Actions
-import { MarkTransactionClear } from '../../actions/transactions';
+import { MarkTransactionClear } from '../../../store/actions/transactions';
 
 @Component({
   selector: 'transaction-list',

@@ -2,7 +2,7 @@
 import {Action} from '@ngrx/store';
 
 // Interface
-import {Notification} from '../models/notification';
+import {Notification} from '../../models/notification';
 
 import {
   NOTI_ADD,

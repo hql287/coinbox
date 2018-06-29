@@ -4,26 +4,30 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
 
 // Components
-import {AppComponent} from './app.component';
+import {AppComponent} from './containers/app.component';
 
-// Content Components
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {BudgetComponent} from './budget/budget.component';
-import {ReportComponent} from './report/report.component';
-import {AccountComponent} from './account/account.component';
-import {NotificationsComponent} from './notifications/notifications.component';
-import {NotiComponent} from './notifications/noti/noti.component';
+// Containers
+import {DashboardComponent} from './containers/dashboard/dashboard.component';
+import {TransactionsComponent} from './containers/transactions/transactions.component';
+import {BudgetComponent} from './containers/budget/budget.component';
+import {ReportComponent} from './containers/report/report.component';
+import {AccountComponent} from './containers/account/account.component';
 
-// Layout Components
-import {HeaderComponent} from './header/header.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+// Components
+import {TransactionListComponent} from './components/transactions/list/transaction-list.component';
+import {TransactionControlsComponent} from './components/transactions/controls/transaction-controls.component';
+import {TransactionFormInlineComponent} from './components/transactions/form-inline/transaction-form-inline.component';
+import {TransactionFormComponent} from './components/transactions/form/transaction-form.component';
+
+// Shared Components
+import {HeaderComponent} from './components/shared/header/header.component';
+
+// Other Components
+import {PageNotFoundComponent} from './containers/page-not-found/page-not-found.component';
+import {NotificationsComponent} from './containers/notifications/notifications.component';
+import {NotiComponent} from './components/notification/noti.component';
 
 // Transaction
-import {TransactionsComponent} from './transactions/transactions.component';
-import {TransactionControlsComponent} from './transactions/controls/transaction-controls.component';
-import {TransactionFormComponent} from './transactions/form/transaction-form.component';
-import {TransactionFormInlineComponent} from './transactions/form-inline/transaction-form-inline.component';
-import {TransactionListComponent} from './transactions/list/transaction-list.component';
 
 // Services
 import {TransactionServices} from './services/transaction.service';
@@ -31,13 +35,13 @@ import {TransactionServices} from './services/transaction.service';
 // NgRx/Store
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
-import {TransactionsReducer} from './reducers/transactions';
-import {NotificationsReducer} from './reducers/notifications';
+import {TransactionsReducer} from './store/reducers/transactions';
+import {NotificationsReducer} from './store/reducers/notifications';
 import {environment} from '../environments/environment';
 
 // Effects
 import {EffectsModule} from '@ngrx/effects';
-import {TransactionEffects} from './effects/transaction.effects';
+import {TransactionEffects} from './store/effects/transaction.effects';
 
 // Routes
 import {RouterModule, Routes} from '@angular/router';

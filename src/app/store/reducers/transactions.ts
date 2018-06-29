@@ -1,4 +1,4 @@
-import {Transaction} from '../models/transaction';
+import {Transaction} from '../../models/transaction';
 import * as TransactionActions from '../actions/transactions';
 import * as TransactionTypes from '../constants';
 

@@ -4,15 +4,15 @@ import { Observable } from 'rxjs';
 
 // Store
 import { Store, select } from '@ngrx/store';
-import { AppState } from '../app.state';
+import { AppState } from '../../store/app.state';
 
 // Interface
-import { Notification } from '../models/notification';
+import { Notification } from '../../models/notification';
 
 // Actions
 import {
   RemoveNotification
-} from '../actions/notifications';
+} from '../../store/actions/notifications';
 
 @Component({
   selector: 'app-notifications',

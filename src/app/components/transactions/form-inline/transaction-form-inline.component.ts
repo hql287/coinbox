@@ -1,22 +1,22 @@
 import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {TransactionServices} from '../../services/transaction.service';
+import {TransactionServices} from '../../../services/transaction.service';
 import { v4 as uuid } from 'uuid';
 import { Observable } from 'rxjs';
 
 // Interface
-import { Transaction } from '../../models/transaction';
+import { Transaction } from '../../../models/transaction';
 
 // Store
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.state';
+import { AppState } from '../../../store/app.state';
 
 // Actions
 import {
   ToggleTransactionForm,
   AddTransaction,
   RemoveTransaction
-} from '../../actions/transactions';
+} from '../../../store/actions/transactions';
 
 @Component({
   selector: 'transaction-form-inline',

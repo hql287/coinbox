@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 // Interface
-import {Transaction} from '../models/transaction';
+import {Transaction} from '../../models/transaction';
 import {Store, select} from '@ngrx/store';
 
 // Observable
@@ -9,13 +9,13 @@ import {Observable, pipe} from 'rxjs';
 import {reduce, map} from 'rxjs/operators';
 
 // App State
-import {AppState} from '../app.state';
+import {AppState} from '../../store/app.state';
 
 // Actions
-import {GenerateTransactions} from '../actions/transactions';
+import {GenerateTransactions} from '../../store/actions/transactions';
 
 // Services
-import {TransactionServices} from '../services/transaction.service';
+import {TransactionServices} from '../../services/transaction.service';
 
 @Component({
   selector: 'app-transactions',
